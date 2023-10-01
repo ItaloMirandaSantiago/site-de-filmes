@@ -7,6 +7,9 @@ module.exports = {
     extend: {
       maxWidth: {
         "max-w-90%" : "90%"
+      },
+      colors:{
+        "colorFund": "#272323"
       }
     },
   },

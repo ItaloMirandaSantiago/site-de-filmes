@@ -21,8 +21,9 @@ export const Compiler = ({api} : {api : Apiresponse}) =>{
     }, [width])
     
     return(
-        <div className="border-b border-white my-4 flex">
-            <motion.div whileTap={{cursor: 'grabbing'}} className="bg-black cursor-grab">
+        <div className="border-b border-white bg-black">
+            <h2 className="text-white">Lançamentos</h2>
+            <motion.div whileTap={{cursor: 'grabbing'}} className="bg-black cursor-grab flex">
                 <motion.ul ref={carousel} drag="x" 
                 dragConstraints={{right: 0, left: -width}} 
                 initial={{x: 100}} animate={{x:0}} transition={{duration: 0.8}} 
@@ -30,7 +31,7 @@ export const Compiler = ({api} : {api : Apiresponse}) =>{
                     {api.results.map(res =>{
                         return(
                         <li key={res.id} className="w-44 flex min-h-max ">
-                            <img className="flex w-4/5 h-4/5 rounded-lg" src={`https://image.tmdb.org/t/p/w500${res.poster_path}`}/>
+                            <img className="flex w-4/5 h-4/5 rounded-lg cursor-pointer transition-transform transform scale-100 hover:scale-110" src={`https://image.tmdb.org/t/p/w500${res.poster_path}`}/>
                         </li>
                         )  
                     })}

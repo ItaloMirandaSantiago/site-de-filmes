@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import "./index.css"
 import { Menu } from './components/Menu';
-import { SpinnerCarousel } from './components/SpinnerCarousel';
+import { SpinnerCarousel } from './components/ImageShadow';
 import { Compiler } from './components/Compiler';
 import { Apiresponse } from './types/Tendencies';
 
@@ -20,31 +20,23 @@ function App() {
     fetch('https://api.themoviedb.org/3/movie/popular', options)
     .then(response => response.json())
     .then((response: Apiresponse) =>{
+      console.log(response)
        setapi(response)})
     .catch(err => console.error(err));
   }
 
-    const app = (event: string): void =>{
-      let a = document.getElementsByClassName("App")[0]
-      let b = a as HTMLElement
-      b.style.backgroundImage = `url(${event})`
-    }
-  
-
   return (
-    <div className="">
+    <div className="bg-colorFund">
       <div className='App box-border bg-gradient-to-r bg-cover bg-no-repeat '>
         <Menu></Menu>
-        <SpinnerCarousel app = {app} />
+        <SpinnerCarousel />
       </div>
       {api !== null && 
       <Compiler api={api} />
       }
-
        {api !== null && 
       <Compiler api={api} />
       }
-
        {api !== null && 
       <Compiler api={api} />
       }
