@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import "./index.css"
 import { Menu } from './components/Menu';
 import { SpinnerCarousel } from './components/SpinnerCarousel';
-import { Compiler } from './components/Conpiler';
+import { Compiler } from './components/Compiler';
 import { Apiresponse } from './types/Tendencies';
 
 
@@ -20,7 +20,6 @@ function App() {
     fetch('https://api.themoviedb.org/3/movie/popular', options)
     .then(response => response.json())
     .then((response: Apiresponse) =>{
-       console.log(response)
        setapi(response)})
     .catch(err => console.error(err));
   }
@@ -33,16 +32,23 @@ function App() {
   
 
   return (
-    <div className="App box-border bg-gradient-to-r bg-cover bg-no-repeat min-w-max">
-      <button onClick={Api}>Requisitar</button>
-      <h1 className="text-3xl">
-      <Menu></Menu>
-      <SpinnerCarousel app = {app} />
+    <div className="">
+      <div className='App box-border bg-gradient-to-r bg-cover bg-no-repeat '>
+        <Menu></Menu>
+        <SpinnerCarousel app = {app} />
+      </div>
       {api !== null && 
       <Compiler api={api} />
       }
-    </h1>
 
+       {api !== null && 
+      <Compiler api={api} />
+      }
+
+       {api !== null && 
+      <Compiler api={api} />
+      }
+            <button className='bg-black block py-2 rounded-sm text-violet-800' onClick={Api}>Requisitar</button>
     </div>
   );
 }

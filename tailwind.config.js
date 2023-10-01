@@ -5,9 +5,8 @@ module.exports = {
   ],
   theme: {
     extend: {
-      colors: {
-        "colorFund1" : "#2193b0",
-        "colorFund2" : "#6dd5ed"
+      maxWidth: {
+        "max-w-90%" : "90%"
       }
     },
   },
