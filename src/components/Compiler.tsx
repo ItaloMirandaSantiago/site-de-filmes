@@ -2,27 +2,20 @@ import { MutableRefObject, useEffect, useRef, useState } from "react"
 import { Apiresponse } from "../types/Tendencies"
 import {motion} from 'framer-motion'
 
-export const Compiler = ({api} : {api : Apiresponse}) =>{
+export const Compiler = ({api, title} : {api : Apiresponse, title : string}) =>{
     
     const carousel: MutableRefObject<HTMLUListElement | null> = useRef(null)
     const [width, setWidth] = useState(0)
     
     useEffect(()=>{
         if (carousel.current) {
-            console.log(carousel.current?.scrollWidth - carousel.current?.offsetHeight)
-            setWidth((carousel.current?.scrollWidth - carousel.current?.offsetHeight))   
+            setWidth((carousel.current?.scrollWidth - window.innerWidth))   
         }
-    }, [api.results])
-
-    useEffect(()=>{
-        console.log(carousel.current?.scrollWidth)
-        console.log(carousel.current?.offsetWidth)
-        console.log(width)
-    }, [width])
+    }, [window.innerWidth])
     
     return(
         <div className="border-b border-white bg-black">
-            <h2 className="text-white">Lançamentos</h2>
+            <h2 className="text-white">{title}</h2>
             <motion.div whileTap={{cursor: 'grabbing'}} className="bg-black cursor-grab flex">
                 <motion.ul ref={carousel} drag="x" 
                 dragConstraints={{right: 0, left: -width}} 
