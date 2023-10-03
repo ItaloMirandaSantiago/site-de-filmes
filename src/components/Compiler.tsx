@@ -1,7 +1,7 @@
 import { MutableRefObject, useEffect, useRef, useState } from "react"
 import { Apiresponse } from "../types/Tendencies"
 import {motion} from 'framer-motion'
-
+import { Link } from "react-router-dom"
 export const Compiler = ({api, title} : {api : Apiresponse, title : string}) =>{
     
     const carousel: MutableRefObject<HTMLUListElement | null> = useRef(null)
@@ -9,6 +9,8 @@ export const Compiler = ({api, title} : {api : Apiresponse, title : string}) =>{
     
     useEffect(()=>{
         if (carousel.current) {
+            console.log(carousel.current.getBoundingClientRect())
+            console.log(api)
             setWidth((carousel.current?.scrollWidth - window.innerWidth))   
         }
     }, [window.innerWidth])
@@ -24,7 +26,9 @@ export const Compiler = ({api, title} : {api : Apiresponse, title : string}) =>{
                     {api.results.map(res =>{
                         return(
                         <li key={res.id} className="w-44 flex min-h-max ">
-                            <img className="flex w-4/5 h-4/5 rounded-lg cursor-pointer transition-transform transform scale-100 hover:scale-110" src={`https://image.tmdb.org/t/p/w500${res.poster_path}`}/>
+                          <Link to={`/view/${encodeURIComponent(JSON.stringify(res))}`}>
+                          <img className="flex w-4/5 h-4/5 rounded-lg cursor-pointer transition-transform transform scale-100 hover:scale-110" src={`https://image.tmdb.org/t/p/w500${res.poster_path}`}/>
+                          </Link>
                         </li>
                         )  
                     })}
