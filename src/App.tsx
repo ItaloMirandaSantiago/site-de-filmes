@@ -5,6 +5,7 @@ import { Apiresponse } from './types/Tendencies';
 import { Route, Routes } from 'react-router-dom';
 import { Home } from './Routes/Home';
 import { ViewContent } from './Routes/ViewContent';
+import { Login } from './Routes/Login';
 
 function App() {
   const [api, setapi] = useState<Apiresponse | null>(null)
@@ -26,11 +27,11 @@ function App() {
  }
 
   return (
-    <div className="bg-colorFund">
-      <button onClick={vai}>foi</button>
+    <div className="bg-colorFund"> 
         <Routes>
           <Route path= "/" element={<Home />}/>
           <Route path='/view/:slug' element={<ViewContent />} />
+          <Route path='/login/' element={<Login/>}/>
         </Routes>
     </div>
   );
