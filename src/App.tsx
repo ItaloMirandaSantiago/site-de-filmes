@@ -19,7 +19,7 @@ function App() {
       Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxMjAxNGZlNmMwOGRiNWIwZDNhYTQ0OWUzYzk3M2ZlOSIsInN1YiI6IjY1MTQ4M2RkYTEwNzRiMDBhZDQ4YmM3ZiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.rb2Whl68tAdBxc0lSFWz2eTnfu2IcXWFwEKDcWUehjw'
     }
   };
-    fetch('https://api.themoviedb.org/3/search/movie', options)
+    fetch('https://api.themoviedb.org/3/authentication/token/new', options)
     .then(response => response.json())
     .then((response: Apiresponse) =>{
       console.log(response)
