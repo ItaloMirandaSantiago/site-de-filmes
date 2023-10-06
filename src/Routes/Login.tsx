@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom"
+
 export const Login = ()=>{
     return(
         <div className="w-screen h-screen container flex justify-center items-center text-black">
@@ -17,7 +19,9 @@ export const Login = ()=>{
                         <input type="checkbox" name="remember" checked />
                         <label className="opacity-50 text-sm" htmlFor="remember">Lembre-se de mim</label>
                     </div>
-                    <button className="py-2 bg-gray-400 rounded-sm w-2/4 text-center">Conectar</button>
+                  <Link className="py-2 bg-gray-400 rounded-sm w-2/4 text-center" to={"/"}>
+                      <button>Conectar</button>
+                  </Link>
                 </div>
             </div>
         </div>
