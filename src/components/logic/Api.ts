@@ -3,21 +3,12 @@ import { Apiresponse } from '../../types/Tendencies';
 import axios from 'axios';
 import { api } from '../../axiosconfig/AxiosConfig';
 
-export const Api = ({Params} : {Params: string})=>{
-
-    const [resapi, setResapi] = useState<Apiresponse | null>(null)
-    
-    useEffect(()=>{
-      const requestfech = async ()=>{
+export const Api = async ({Params} : {Params: string})=>{
         try{
-         const res = await api.get(Params)
-         setResapi(res.data)
+          const res = await api.get(Params)
+         return res.data
         }catch(err){
-          alert(`algo deu errado! verifique sua coneção de rede ou tente mais tarde. error: ${err}`)
+          throw err
         }
-      }
-      requestfech()
 
-    },[Params])
-      return resapi
 }

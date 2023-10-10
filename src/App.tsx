@@ -34,7 +34,7 @@ function App() {
           <Route path= "/" element={<Home />}/>
           <Route path='/view/:slug' element={<ViewContent />} />
           <Route path='/login/' element={<Login/>}/>
-          <Route path='/search/:slug' element={<ResultsSearch />} />
+          <Route path='/search/' element={<ResultsSearch />} />
         </Routes>
     </div>
   );
