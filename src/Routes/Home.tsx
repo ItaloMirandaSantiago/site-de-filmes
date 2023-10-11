@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 import { ImageShadow } from "../components/ImageShadow"
 import { Menu } from "../components/Menu"
 import { PathRequests } from "../components/PathRequests"
@@ -8,7 +9,9 @@ export const Home = ()=>{
         <div>
             <Menu />
             <ImageShadow />
-            <Search />
+            <Link to={'Search'}>
+                <Search />
+            </Link>
             <PathRequests />
         </div>
     )

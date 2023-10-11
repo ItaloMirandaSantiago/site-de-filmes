@@ -7,6 +7,7 @@ import { Home } from './Routes/Home';
 import { ViewContent } from './Routes/ViewContent';
 import { Login } from './Routes/Login';
 import { ResultsSearch } from './Routes/ResultsSearch';
+import { SearchProvider } from './Contexts/SearchContext';
 
 function App() {
   const [api, setapi] = useState<Apiresponse | null>(null)
@@ -30,12 +31,16 @@ function App() {
   return (
     <div className="bg-colorFund"> 
     <button onClick={vai}>FOi</button>
-        <Routes>
-          <Route path= "/" element={<Home />}/>
-          <Route path='/view/:slug' element={<ViewContent />} />
-          <Route path='/login/' element={<Login/>}/>
-          <Route path='/search/' element={<ResultsSearch />} />
-        </Routes>
+    <SearchProvider>
+      <Routes>
+        <Route path= "/" element={<Home />}/>
+        <Route path='/view/:slug' element={<ViewContent />} />
+        <Route path='/login/' element={<Login/>}/>
+        <Route path='/search/' element={<ResultsSearch />} />
+        <Route path='*' element={<Home />} />
+      </Routes>
+    </SearchProvider>
+        
     </div>
   );
 }

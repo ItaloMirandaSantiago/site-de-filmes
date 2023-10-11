@@ -16,7 +16,7 @@ export const Login = ()=>{
                     <p className="text-left">Senha</p>
                     <input className="my-1 py-2 border border-black w-3/4" type="password" placeholder="Senha"></input>
                     <div>
-                        <input type="checkbox" name="remember" checked />
+                        <input type="checkbox" name="remember" defaultChecked />
                         <label className="opacity-50 text-sm" htmlFor="remember">Lembre-se de mim</label>
                     </div>
                   <Link className="py-2 bg-gray-400 rounded-sm w-2/4 text-center" to={"/"}>
