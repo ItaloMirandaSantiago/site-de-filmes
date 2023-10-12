@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom"
 
 export const Login = ()=>{
+    
+
     return(
         <div className="w-screen h-screen container flex justify-center items-center text-black">
             <div className="w-2/4 h-2/4 rounded-md bg-white text-center">

@@ -9,20 +9,7 @@ import { ImageShadow } from "../components/ImageShadow"
 import { SearchContext } from "../Contexts/SearchContext"
 
 export const ResultsSearch = ()=>{
-    const [SearchApi, setSearchApi] =  useState<Apiresponse | null>(null) 
     const resValue = useContext(SearchContext)
-
-    useEffect(()=>{
- 
-        if (resValue?.ResSearch) {
-            try{
-               
-            }catch(err){
-                alert(`error ao analisar o Json ${err}`)
-            }
-        }
-
-    }, [])
     return(
         <div>
                 <Menu />

@@ -12,7 +12,7 @@ export const PathRequests = ()=>{
        await Api({Params: "/discover/movie?include_adult=false&include_video=true&language=en-US&page=1&sort_by=vote_count.desc"})
         .then(e=>setMoviePopular(e)) 
         await Api({Params: "/discover/movie?include_adult=false&include_video=true&language=en-US&page=1&sort_by=popularity.desc"})
-        .then(e=>setMoviePopular(e)) 
+        .then(e=>setMostVoted(e)) 
         await Api({Params: "/discover/movie?include_adult=false&include_video=true&language=en-US&page=1&sort_by=primary_release_date.desc"})
         .then(e=>setRecent(e)) 
     }
@@ -23,15 +23,11 @@ export const PathRequests = ()=>{
    
     return(
         <div>
-                {recent !== null && 
-                    <Compiler api={recent} title="Mais Recentes" />
-                }
-                {movie_popular !== null &&
-                    <Compiler api={movie_popular} title="filmes polulares" />
-                }
-                {mostVoted !== null && 
-                    <Compiler api={mostVoted} title="Mais votados" />
-                }             
+                <Compiler api={recent} title="Mais Recentes" />
+                
+                <Compiler api={movie_popular} title="filmes polulares" />
+
+                <Compiler api={mostVoted} title="Mais votados" />               
         </div>
     )
 }
