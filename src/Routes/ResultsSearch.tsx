@@ -11,13 +11,11 @@ import { SearchContext } from "../Contexts/SearchContext"
 export const ResultsSearch = ()=>{
     const resValue = useContext(SearchContext)
     return(
-        <div>
+        <div className="h-screen w-screen">
                 <Menu />
                 <ImageShadow />
                 <Search />
-            {resValue?.ResSearch && 
-                <Compiler api={resValue.ResSearch} title="Principais Resultados"/>
-            }
+                <Compiler api={resValue? resValue.ResSearch : null} title="Principais Resultados"/>
         </div>
     )
 }

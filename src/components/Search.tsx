@@ -2,13 +2,14 @@ import { SetStateAction, useContext, useEffect, useState } from "react"
 import { Api } from "./logic/Api"
 import { Link, useNavigate } from "react-router-dom"
 import { SearchContext } from "../Contexts/SearchContext"
+import { InputValueContext } from "../Contexts/InputValueSearch"
 
 export const Search = ()=>{
     const navigate = useNavigate()
     const timer = 1000
     const [timersearch, setTimerSearch] = useState<NodeJS.Timeout | null>(null)
     const SearchValue = useContext(SearchContext)
-    const [inputValue, setInputValue] = useState('')
+    const InputValue = useContext(InputValueContext)
 
     useEffect(()=>{
         if (timersearch) {
@@ -16,9 +17,9 @@ export const Search = ()=>{
         }
            const newTimer = setTimeout(()=>{
             console.log('indo useeffect ')
-                if (inputValue) {
+                if (InputValue?.ValueInput) {
                     console.log("rodou")
-                    const apii = Api({ Params : `/search/movie?query=${inputValue}`})
+                    const apii = Api({ Params : `/search/movie?query=${InputValue?.ValueInput}`})
                     apii.then(e=>{
                         SearchValue?.setResSearch(e)
                     }).catch((err)=>{
@@ -28,12 +29,12 @@ export const Search = ()=>{
             }, timer)
             setTimerSearch(newTimer)
 
-    }, [inputValue])
+    }, [InputValue?.ValueInput])
     
 
     return(
-        <div className="text-center">
-            <input onChange={(e)=>setInputValue(e.target.value)} value={inputValue} className="py-2 rounded-sm" type="text" placeholder="Pesquise seus filmes favoritos" />
+        <div className=" mb-3 text-center">
+            <input className=" h-12 w-2/4 pl-3 rounded shadow-none outline-none" onChange={(e)=>InputValue?.setValueInput(e.target.value)} value={InputValue?.ValueInput ? InputValue.ValueInput : ""} type="text" placeholder="Encontre seus filmes favoritos" />
         </div>
     )
 }

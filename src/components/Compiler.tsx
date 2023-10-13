@@ -4,7 +4,7 @@ import { Apiresponse } from "../types/Tendencies"
 import {motion} from 'framer-motion'
 import { Link } from "react-router-dom"
 import { Loading } from "./Loading"
-export const Compiler = ({api, title} : {api : Apiresponse |  null, title : string}) =>{
+export const Compiler = ({api, title} : {api : Apiresponse | null, title : string}) =>{
     
     const carousel: MutableRefObject<HTMLUListElement | null> = useRef(null)
     const [width, setWidth] = useState(0)
@@ -17,7 +17,7 @@ export const Compiler = ({api, title} : {api : Apiresponse |  null, title : stri
     }, [carousel, api])
     
     return(
-        <div className="border-b border-white bg-black">
+        <div className="bg-black">
             <h2 className="text-white ml-2 ">{title}</h2>
             <motion.div whileTap={{cursor: 'grabbing'}} className="bg-black cursor-grab flex ml-2 ">
                 <motion.ul ref={carousel} drag="x" 
