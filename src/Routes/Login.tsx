@@ -9,7 +9,9 @@ export const Login = ()=>{
                 <h2>Login</h2>
                 <div className="flex justify-center justify-items-center items-center ">
                     <div className="w-16 h-16 rounded-full overflow-hidden">
-                        <img className=" w-full h-full object-cover" src="https://www.fatosdesconhecidos.com.br/wp-content/uploads/2020/01/images-600x377.png" />
+                        <img className=" w-full h-full object-cover" src="https://www.fatosdesconhecidos.com.br/wp-content/uploads/2020/01/images-600x377.png" 
+                        alt="imagem não encontratada"
+                        />
                     </div>
                 </div>
                 <div className="flex flex-col justify-between items-center">

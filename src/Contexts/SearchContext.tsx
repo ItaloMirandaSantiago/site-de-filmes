@@ -1,12 +1,12 @@
 import { ReactNode, createContext, useState } from "react";
 import { Apiresponse } from "../types/Tendencies";
 
-type SearchContext = {
+type SearchContextType = {
     ResSearch: Apiresponse | null,
     setResSearch: (n: Apiresponse) => void
 }
 
-export const SearchContext = createContext<SearchContext | null>(null)
+export const SearchContext = createContext<SearchContextType | null>(null)
 
 type Props = {children: ReactNode}
 

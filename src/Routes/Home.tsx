@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import { ImageShadow } from "../components/ImageShadow"
 import { Menu } from "../components/Menu"
 import { PathRequests } from "../components/PathRequests"
@@ -14,11 +14,11 @@ export const Home = ()=>{
             if (InputValue?.ValueInput) {
                 navigate("Search")
            }
+           // eslint-disable-next-line react-hooks/exhaustive-deps
         }, [InputValue?.ValueInput])
  
     return(
         <div>
-            <Menu />
             <ImageShadow />
             <Search />          
             <PathRequests />

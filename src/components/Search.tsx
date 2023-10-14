@@ -1,11 +1,9 @@
-import { SetStateAction, useContext, useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { Api } from "./logic/Api"
-import { Link, useNavigate } from "react-router-dom"
 import { SearchContext } from "../Contexts/SearchContext"
 import { InputValueContext } from "../Contexts/InputValueSearch"
 
 export const Search = ()=>{
-    const navigate = useNavigate()
     const timer = 1000
     const [timersearch, setTimerSearch] = useState<NodeJS.Timeout | null>(null)
     const SearchValue = useContext(SearchContext)
@@ -16,9 +14,8 @@ export const Search = ()=>{
             clearTimeout(timersearch)
         }
            const newTimer = setTimeout(()=>{
-            console.log('indo useeffect ')
                 if (InputValue?.ValueInput) {
-                    console.log("rodou")
+                    console.log('rodo')
                     const apii = Api({ Params : `/search/movie?query=${InputValue?.ValueInput}`})
                     apii.then(e=>{
                         SearchValue?.setResSearch(e)
