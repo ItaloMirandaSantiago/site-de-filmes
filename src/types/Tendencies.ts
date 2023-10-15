@@ -16,8 +16,8 @@ export type Movie = {
 }
 
 export type Apiresponse = {
-    page: number;
+    page?: number;
     results: Movie[];
-    total_pages: number;
-    total_results: number;
+    total_pages?: number;
+    total_results?: number;
 }

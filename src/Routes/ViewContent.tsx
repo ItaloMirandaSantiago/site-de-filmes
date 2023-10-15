@@ -5,7 +5,23 @@ export const ViewContent = ()=>{
     const {slug} = useParams<string>()
     if (slug) {
         const movie: Movie = JSON.parse((decodeURIComponent(slug)))
-        console.log(movie)
+        
+        const VerificationSave = ()=>{
+            const save: string | null = localStorage.getItem('save')
+            if (save) {
+                let saveArray: Movie[] = JSON.parse(save)
+                if (saveArray.some((i)=> i.id === movie.id)) {
+                    alert('este item já foi salvo')
+                }else{
+                    saveArray.push(movie)
+                    localStorage.setItem('save', JSON.stringify(saveArray))
+                }
+                          
+            }else{
+                localStorage.setItem('save', JSON.stringify([movie]))
+            }
+        }
+
         return(
             <div className="text-white text-center w-screen h-screen "> 
                 <h1 className="text-3xl">{movie.title}</h1>
@@ -20,6 +36,7 @@ export const ViewContent = ()=>{
                         <h2>Popularidade: {movie.popularity}</h2>
                         <h2>Classificação dos público (0 a 10): {movie.vote_average}</h2>
                         <h2>Total de avaliações: {movie.vote_count}</h2>
+                        <button onClick={VerificationSave} className=" mt-5 rounded text-1xl p-2 bg-blue-800 hover:bg-red-600">Salvar</button>
                     </div>
                 </div>
                 <div className="my-2  mx-2">
@@ -31,9 +48,9 @@ export const ViewContent = ()=>{
                 </div>
             </div>
         )        
+    }else{
+        return(<div>
+            <h2>Algo deu errado, feche a página e tente novamente</h2>
+        </div>)
     }
-    return(<div>
-        <h2>Algo deu erado, feche a página e tente novamente</h2>
-    </div>)
-
 }
