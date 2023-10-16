@@ -16,7 +16,7 @@ function App() {
       <Menu />
       <Routes>
         <Route path= "/" element={<Home />}/>
-          <Route path='/view/:slug' element={<ViewContent />} />
+          <Route path='/view/:slug/:saveordelete' element={<ViewContent />} />
           <Route path='/login/' element={<Login/>}/>
           <Route path='/search/' element={<ResultsSearch />} />
           <Route path='/favorites/' element={<Favorites />} />

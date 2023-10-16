@@ -19,8 +19,12 @@ export const Favorites = ()=>{
     return(
         <div className="text-white mt-3 text-center">
             <h2 className="text-3xl text-center">Organize seus filmes da forma mais confortavel para você!</h2>
-            {items && 
-                <Compiler api={items} title='Salvos' />
+            {items?.length ? 
+                <Compiler api={items} title='Salvos' favorite={true} />
+                :
+                <div className="bg-red-500">
+                    <h2>Nenhum filme salvo no momento</h2>
+                </div>
             }
         </div>
     )

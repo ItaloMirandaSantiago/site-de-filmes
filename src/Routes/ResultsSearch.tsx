@@ -10,7 +10,7 @@ export const ResultsSearch = ()=>{
         <div className="h-screen w-screen">
                 <ImageShadow />
                 <Search />
-                <Compiler api={resValue?.ResSearch? resValue.ResSearch?.results : null} title="Principais Resultados"/>
+                <Compiler api={resValue?.ResSearch? resValue.ResSearch?.results : null} title="Principais Resultados" favorite={false}/>
         </div>
     )
 }

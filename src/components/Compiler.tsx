@@ -4,7 +4,7 @@ import { Movie } from "../types/Tendencies"
 import {motion} from 'framer-motion'
 import { Link } from "react-router-dom"
 import { Loading } from "./Loading"
-export const Compiler = ({api, title} : {api : Movie[] | null, title : string}) =>{
+export const Compiler = ({api, title, favorite} : {api : Movie[] | null, title : string, favorite : boolean}) =>{
     
     const carousel: MutableRefObject<HTMLUListElement | null> = useRef(null)
     const [width, setWidth] = useState(0)
@@ -27,7 +27,7 @@ export const Compiler = ({api, title} : {api : Movie[] | null, title : string}) 
                         api.map(res =>{
                             return(
                                 <li key={res.id} className="w-44 flex min-h-max ">
-                                    <Link className="w-4/5 h-4/5" to={`/view/${encodeURIComponent(JSON.stringify(res))}`}>
+                                    <Link className="w-4/5 h-4/5" to={`/view/${encodeURIComponent(JSON.stringify(res))}/${favorite ? 'true' : 'false' }`}>
                                         <img className="flex w-4/5 h-4/5 rounded-lg cursor-pointer transition-transform transform scale-100 hover:scale-110"
                                             src={res.poster_path ? `https://image.tmdb.org/t/p/w500${res.poster_path}` 
                                             : 

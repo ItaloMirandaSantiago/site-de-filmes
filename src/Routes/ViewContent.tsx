@@ -1,8 +1,11 @@
-import {useParams} from "react-router-dom"
+import {useNavigate, useParams} from "react-router-dom"
 import { Movie } from "../types/Tendencies"
 
 export const ViewContent = ()=>{
-    const {slug} = useParams<string>()
+    
+
+    const navigate = useNavigate()
+    const {slug, saveordelete} = useParams<string>()
     if (slug) {
         const movie: Movie = JSON.parse((decodeURIComponent(slug)))
         
@@ -10,11 +13,23 @@ export const ViewContent = ()=>{
             const save: string | null = localStorage.getItem('save')
             if (save) {
                 let saveArray: Movie[] = JSON.parse(save)
-                if (saveArray.some((i)=> i.id === movie.id)) {
-                    alert('este item já foi salvo')
-                }else{
+                let itemSave = true
+                for (let i = 0; i < saveArray.length; i++) {
+                    if (saveArray[i].id === movie.id){
+                        itemSave = false
+                        if (saveordelete === 'true') {
+                            saveArray.splice(i, 1)
+                            localStorage.setItem('save', JSON.stringify(saveArray))
+                            navigate(-1)
+                        }else{
+                            alert('este item já foi salvo')
+                        }
+                        break
+                    }
+                }
+                if (itemSave) {
                     saveArray.push(movie)
-                    localStorage.setItem('save', JSON.stringify(saveArray))
+                        localStorage.setItem('save', JSON.stringify(saveArray))
                 }
                           
             }else{
@@ -36,7 +51,10 @@ export const ViewContent = ()=>{
                         <h2>Popularidade: {movie.popularity}</h2>
                         <h2>Classificação dos público (0 a 10): {movie.vote_average}</h2>
                         <h2>Total de avaliações: {movie.vote_count}</h2>
-                        <button onClick={VerificationSave} className=" mt-5 rounded text-1xl p-2 bg-blue-800 hover:bg-red-600">Salvar</button>
+                        <button onClick={VerificationSave} 
+                        className=" mt-5 rounded text-1xl p-2 bg-blue-800 hover:bg-red-600">
+                            {saveordelete === "true" ? 'Excluir' : 'Salvar'}
+                        </button>
                     </div>
                 </div>
                 <div className="my-2  mx-2">
