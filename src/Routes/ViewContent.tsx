@@ -1,11 +1,13 @@
 import {useNavigate, useParams} from "react-router-dom"
 import { Movie } from "../types/Tendencies"
+import { useState } from "react"
 
 export const ViewContent = ()=>{
     
 
     const navigate = useNavigate()
     const {slug, saveordelete} = useParams<string>()
+    const [changText, setChangText] = useState(`${saveordelete}`)
     if (slug) {
         const movie: Movie = JSON.parse((decodeURIComponent(slug)))
         
@@ -22,7 +24,11 @@ export const ViewContent = ()=>{
                             localStorage.setItem('save', JSON.stringify(saveArray))
                             navigate(-1)
                         }else{
-                            alert('este item já foi salvo')
+                            const button  = document.getElementsByClassName('button')[0]
+                            button.setAttribute('disabled', 'true')
+                            button.classList.add("bg-red-600")
+                            button.classList.remove('hover:bg-red-600')
+                            button.innerHTML = 'este filme já foi salvo'
                         }
                         break
                     }
@@ -30,6 +36,11 @@ export const ViewContent = ()=>{
                 if (itemSave) {
                     saveArray.push(movie)
                         localStorage.setItem('save', JSON.stringify(saveArray))
+                        const button  = document.getElementsByClassName('button')[0]
+                        button.setAttribute('disabled', 'true')
+                        button.classList.add("bg-green-600")
+                        button.classList.remove('hover:bg-red-600')
+                        button.innerHTML = 'sucesso'
                 }
                           
             }else{
@@ -52,8 +63,8 @@ export const ViewContent = ()=>{
                         <h2>Classificação dos público (0 a 10): {movie.vote_average}</h2>
                         <h2>Total de avaliações: {movie.vote_count}</h2>
                         <button onClick={VerificationSave} 
-                        className=" mt-5 rounded text-1xl p-2 bg-blue-800 hover:bg-red-600">
-                            {saveordelete === "true" ? 'Excluir' : 'Salvar'}
+                        className="button mt-5 rounded text-1xl p-2 bg-blue-800 hover:bg-red-600">
+                            {saveordelete === "true" || changText === 'true' ? 'Excluir' : 'Salvar'}
                         </button>
                     </div>
                 </div>

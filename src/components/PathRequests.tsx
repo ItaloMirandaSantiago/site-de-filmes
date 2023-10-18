@@ -30,10 +30,10 @@ export const PathRequests = ()=>{
 
     return(
         <div>
-                <Compiler api={recent && recent?.results} title="Mais Recentes" favorite={false} />
-                
                 <Compiler api={movie_popular && movie_popular?.results} title="filmes polulares" favorite={false} />
-
+                
+                <Compiler api={recent && recent?.results} title="Futuramente" favorite={false} />
+                
                 <Compiler api={mostVoted && mostVoted?.results} title="Mais votados" favorite={false} />               
         </div>
     )
