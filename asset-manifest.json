@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/site-de-filmes/static/css/main.08c077e8.css",
+    "main.js": "/site-de-filmes/static/js/main.589b34b7.js",
+    "static/js/787.0ab1e71e.chunk.js": "/site-de-filmes/static/js/787.0ab1e71e.chunk.js",
+    "index.html": "/site-de-filmes/index.html",
+    "main.08c077e8.css.map": "/site-de-filmes/static/css/main.08c077e8.css.map",
+    "main.589b34b7.js.map": "/site-de-filmes/static/js/main.589b34b7.js.map",
+    "787.0ab1e71e.chunk.js.map": "/site-de-filmes/static/js/787.0ab1e71e.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.08c077e8.css",
+    "static/js/main.589b34b7.js"
+  ]
+}
