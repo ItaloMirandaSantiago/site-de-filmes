@@ -4,8 +4,8 @@ export const Login = ()=>{
     
 
     return(
-        <div className="w-screen h-screen container flex justify-center items-center text-black">
-            <div className="w-2/4 h-2/4 rounded-md bg-white text-center">
+        <div className="flex justify-center items-center h-[88vh]">
+            <div className="w-3/4 h-3/4 rounded-md bg-white text-center">
                 <h2>Login</h2>
                 <div className="flex justify-center justify-items-center items-center ">
                     <div className="w-16 h-16 rounded-full overflow-hidden">

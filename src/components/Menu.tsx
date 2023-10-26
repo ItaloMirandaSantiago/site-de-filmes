@@ -1,10 +1,21 @@
-import { useContext } from "react"
+import { useContext, useRef } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { InputValueContext } from "../Contexts/InputValueSearch"
 
 export const Menu = ()=>{
     const navigate = useNavigate()
     const InputValue = useContext(InputValueContext)
+    const nav = useRef<HTMLDivElement | null>(null)
+
+    function addColor(NavElement: HTMLElement){
+        
+        nav?.current?.querySelectorAll('.menu, .text-blue-600').forEach((element =>{
+            if (element.className === 'text-blue-600') {
+              element.className = 'menu'
+            }
+          }))
+          NavElement.className = 'text-blue-600'
+    }
 
     return(
         <div className=" py-4 flex justify-around items-center bg-gray-700">
@@ -14,11 +25,11 @@ export const Menu = ()=>{
                     Voltar
             </button>
             <div>Logo</div>
-            <div className="flex gap-3">
-                <Link to={'/favorites/'}>favoritos</Link>
-                <a href="https://www.themoviedb.org/signup?language=pt-BR">Cadastrar</a>
-                <Link to="/login">Login</Link>
-            </div>
+            <nav ref={nav} className="flex gap-3">
+                <Link className="menu" onClick={(e)=>addColor(e.currentTarget)} to={'/favorites/'}>favoritos</Link>
+                <a className="menu" onClick={(e)=>addColor(e.currentTarget)} href="https://www.themoviedb.org/signup?language=pt-BR">Cadastrar</a>
+                <Link className="menu" onClick={(e)=>addColor(e.currentTarget)} to="/login">Login</Link>
+            </nav>
         </div>
     )
 }

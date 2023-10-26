@@ -11,7 +11,7 @@ import { Favorites } from "./Routes/Favorites";
 function App() {
 
   return (
-    <div className="bg-colorFund"> 
+    <div className="bg-colorFund overflow-hidden"> 
     <Providers>
       <Menu />
       <Routes>
