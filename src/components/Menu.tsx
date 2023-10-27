@@ -1,4 +1,4 @@
-import { useContext, useRef } from "react"
+import { useContext, useRef, useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { InputValueContext } from "../Contexts/InputValueSearch"
 
@@ -6,6 +6,7 @@ export const Menu = ()=>{
     const navigate = useNavigate()
     const InputValue = useContext(InputValueContext)
     const nav = useRef<HTMLDivElement | null>(null)
+    const [MoveMenu, setMoveMenu] = useState<boolean>(true)
 
     function addColor(NavElement: HTMLElement){
         
@@ -17,18 +18,70 @@ export const Menu = ()=>{
           NavElement.className = 'text-blue-600'
     }
 
+    function active() {
+        if (MoveMenu) {
+            nav.current?.classList.add('translate-x-0') 
+            nav.current?.classList.remove('translate-x-full') 
+            nav.current?.querySelectorAll('.menu, .text-blue-600').forEach(element  => {
+                element.classList.add('animation')
+            })
+
+            document.querySelectorAll('.divMenu').forEach((element, index) => {
+                if (index === 0) {
+                    element.classList.add('op1')
+                }else if (index === 1) {
+                    element.classList.add('op2')
+                }else if (index === 2) {
+                    element.classList.add('op3')
+                }else{
+                    alert('algo deu errado, reinicie o site')
+                }
+            })
+            setMoveMenu(false)
+        }else{
+            nav.current?.classList.add('translate-x-full') 
+            nav.current?.classList.remove('translate-x-0')
+            nav.current?.querySelectorAll('.menu, .text-blue-600').forEach(element => {
+                element.classList.remove('animation')
+            }) 
+
+            document.querySelectorAll('.divMenu').forEach((element, index) => {
+                if (index === 0) {
+                    element.classList.remove('op1')
+                }else if (index === 1) {
+                    element.classList.remove('op2')
+                }else if (index === 2) {
+                    element.classList.remove('op3')
+                }else{
+                    alert('algo deu errado, reinicie o site')
+                }
+            })
+
+            setMoveMenu(true)
+        }
+    }
+
     return(
-        <div className=" py-4 flex justify-around items-center bg-gray-700">
+        <div className=" flex justify-around items-center bg-gray-700">
             <button className="py-2 px-2 bg-blue-950 rounded" onClick={()=>{
                 navigate(-1)
                 InputValue?.setValueInput(null)}}>
                     Voltar
             </button>
             <div>Logo</div>
-            <nav ref={nav} className="flex gap-3">
-                <Link className="menu" onClick={(e)=>addColor(e.currentTarget)} to={'/favorites/'}>favoritos</Link>
-                <a className="menu" onClick={(e)=>addColor(e.currentTarget)} href="https://www.themoviedb.org/signup?language=pt-BR">Cadastrar</a>
-                <Link className="menu" onClick={(e)=>addColor(e.currentTarget)} to="/login">Login</Link>
+
+                <div onClick={active} className="MenuResponsivo cursor-pointer block sm:invisible">
+                    <div className="divMenu w-8 h-1 m-2 bg-white transition duration-300"></div>
+                    <div className="divMenu w-8 h-1 m-2 bg-white transition duration-300"></div>
+                    <div className="divMenu w-8 h-1 m-2 bg-white transition duration-300"></div>
+                </div>
+
+            <nav ref={nav} className="absolute top-6.6vh z-10 right-0 w-50vw h-50vh flex flex-col items-center justify-around text-white 
+            transform translate-x-full transition-transform duration-300 ease-in bg-slate-900 
+            parte qu já estava -> sm:h-full sm:top-0 sm:flex-row sm:static sm:bg-gray-700 sm:translate-x-0 sm:text-black gap-3">
+                <Link className="menu opacity-0 sm:opacity-100" onClick={(e)=>addColor(e.currentTarget)} to={'/favorites/'}>favoritos</Link>
+                <a className="menu opacity-0 sm:opacity-100" onClick={(e)=>addColor(e.currentTarget)} href="https://www.themoviedb.org/signup?language=pt-BR">Cadastrar</a>
+                <Link className="menu opacity-0 sm:opacity-100" onClick={(e)=>addColor(e.currentTarget)} to="/login">Login</Link>
             </nav>
         </div>
     )

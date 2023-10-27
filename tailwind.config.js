@@ -10,9 +10,23 @@ module.exports = {
       },
       colors:{
         "colorFund": "#272323"
+      },
+      spacing : {
+        '6.6vh' : '6.6vh',
+        '50vh' : '50vh',
+        '50vw' : '50vw'
       }
     },
   },
-  plugins: [],
+  plugins: [
+    function ({addUtilities}) {
+      const newUtilities = {
+          '.rotate45-and-translate-8' : {
+            transform : 'rotate(45deg) translate(-8px, 8px);'
+          }
+      }
+      addUtilities(newUtilities)
+    }
+  ],
 }
 
