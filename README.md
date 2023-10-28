@@ -1,5 +1,6 @@
-<h1>Site de Filmes</h1>
+<h1>Site de Filmes - <a href="https://italomirandasantiago.github.io/site-de-filmes/">Clique aqui para ver o site</a></h1>
 <h2>Tecnologias Utilizadas</h2>
+
 <ul>
     <li>TypeScrit</li>
   <li>React</li>
