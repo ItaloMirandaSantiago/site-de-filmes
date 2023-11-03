@@ -12,9 +12,12 @@ module.exports = {
         "colorFund": "#272323"
       },
       spacing : {
-        '6.6vh' : '6.6vh',
+        '11.7vh' : '11.7vh',
         '50vh' : '50vh',
         '50vw' : '50vw'
+      },
+      boxShadow : {
+        'customMenu' : '0px 7px 11px rgba(0,0,0, .7)'
       }
     },
   },

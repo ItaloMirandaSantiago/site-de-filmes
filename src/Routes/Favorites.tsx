@@ -14,7 +14,7 @@ export const Favorites = ()=>{
                 setItems([ve])
             }
         }
-    }, [localStorage.getItem('save')])
+    }, [save])
 
     return(
         <div className="text-white mt-3 text-center">
@@ -22,7 +22,7 @@ export const Favorites = ()=>{
             {items?.length ? 
                 <Compiler api={items} title='Salvos' favorite={true} />
                 :
-                <div className="bg-red-500">
+                <div className="bg-red-500 py-3 my-3">
                     <h2>Nenhum filme salvo no momento</h2>
                 </div>
             }

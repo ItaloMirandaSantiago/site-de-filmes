@@ -62,26 +62,26 @@ export const Menu = ()=>{
     }
 
     return(
-        <div className=" flex justify-around items-center bg-gray-700">
-            <button className="py-2 px-2 bg-blue-950 rounded" onClick={()=>{
+        <div className=" flex justify-around items-center bg-gray-700 h-20 shadow-customMenu">
+            <button className="animationButtonMenu duration-500 py-2 px-2 bg-black rounded text-lg" onClick={()=>{
                 navigate(-1)
                 InputValue?.setValueInput(null)}}>
                     Voltar
             </button>
-            <div>Logo</div>
+            <div className=" cursor-pointer font-bold text-2xl"><a target="_blank" rel="noopener noreferrer" href="https://www.linkedin.com/in/italo-miranda-santiago-618528226/">{"<Italo/>"}</a></div>
 
-                <div onClick={active} className="MenuResponsivo cursor-pointer block sm:invisible">
+                <div onClick={active} className=" z-20 MenuResponsivo cursor-pointer block sm:invisible">
                     <div className="divMenu w-8 h-1 m-2 bg-white transition duration-300"></div>
                     <div className="divMenu w-8 h-1 m-2 bg-white transition duration-300"></div>
                     <div className="divMenu w-8 h-1 m-2 bg-white transition duration-300"></div>
                 </div>
 
-            <nav ref={nav} className="absolute top-6.6vh z-10 right-0 w-50vw h-50vh flex flex-col items-center justify-around text-white 
+            <nav ref={nav} className="absolute top-11.7vh z-10 right-0 w-50vw h-50vh flex flex-col items-center justify-around 
             transform translate-x-full transition-transform duration-300 ease-in bg-slate-900 
-            parte qu já estava -> sm:h-full sm:top-0 sm:flex-row sm:static sm:bg-gray-700 sm:translate-x-0 sm:text-black gap-3">
-                <Link className="menu opacity-0 sm:opacity-100" onClick={(e)=>addColor(e.currentTarget)} to={'/favorites/'}>favoritos</Link>
-                <a className="menu opacity-0 sm:opacity-100" onClick={(e)=>addColor(e.currentTarget)} href="https://www.themoviedb.org/signup?language=pt-BR">Cadastrar</a>
-                <Link className="menu opacity-0 sm:opacity-100" onClick={(e)=>addColor(e.currentTarget)} to="/login">Login</Link>
+            parte qu já estava -> sm:h-full sm:top-0 sm:flex-row sm:static sm:bg-gray-700 sm:translate-x-0 text-lg gap-3">
+                <Link className="menu animationButtonMenu duration-500 rounded-md opacity-0 sm:opacity-100" onClick={(e)=>addColor(e.currentTarget)} to={'/favorites/'}>Favoritos</Link>
+                <a target="black_" rel="noopener noreferrer" className="menu animationButtonMenu duration-500 rounded-md opacity-0 sm:opacity-100" onClick={(e)=>addColor(e.currentTarget)} href="https://www.themoviedb.org/signup?language=pt-BR">Cadastrar</a>
+                <Link className="menu animationButtonMenu duration-500 rounded-md opacity-0 sm:opacity-100" onClick={(e)=>addColor(e.currentTarget)} to="/login">Login</Link>
             </nav>
         </div>
     )

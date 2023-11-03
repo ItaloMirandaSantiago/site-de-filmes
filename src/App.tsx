@@ -7,6 +7,7 @@ import { ResultsSearch } from './Routes/ResultsSearch';
 import { Providers } from "./utils/Providers";
 import { Menu } from "./components/Menu";
 import { Favorites } from "./Routes/Favorites";
+import { DesenvolvedorInfo } from "./components/DesenvolvedorInfo";
 
 function App() {
 
@@ -22,6 +23,7 @@ function App() {
           <Route path='/favorites/' element={<Favorites />} />
           <Route path='*' element={<Home />} />
         </Routes>
+        <DesenvolvedorInfo />
     </Providers>
 
         

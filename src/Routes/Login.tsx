@@ -24,10 +24,10 @@ export const Login = ()=>{
                             <input type="checkbox" name="remember" id="remember" defaultChecked />
                             Lembre-se de mim
                         </label>
-                        <a className="opacity-50 text-sm no-underline hover:underline" href="#">esqueceu sua senha?</a>
+                        <button className="opacity-50 text-sm no-underline hover:underline">esqueceu sua senha?</button>
                     </div>
                   <Link className=" rounded-3xl py-2 bg-gray-400 w-2/4 text-center" to={"/"}>
-                      <button>Conectar</button>
+                      <button className="text-black">Conectar</button>
                   </Link>
                 </div>
             </form>

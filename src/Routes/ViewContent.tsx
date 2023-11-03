@@ -1,13 +1,11 @@
 import {useNavigate, useParams} from "react-router-dom"
 import { Movie } from "../types/Tendencies"
-import { useState } from "react"
 
 export const ViewContent = ()=>{
     
-
     const navigate = useNavigate()
     const {slug, saveordelete} = useParams<string>()
-    const [changText, setChangText] = useState(`${saveordelete}`)
+    const changText = `${saveordelete}`
     if (slug) {
         const movie: Movie = JSON.parse((decodeURIComponent(slug)))
         
@@ -56,7 +54,7 @@ export const ViewContent = ()=>{
                     src={movie.poster_path ? `https://image.tmdb.org/t/p/w500${movie.poster_path}` : "https://portal.crea-sc.org.br/wp-content/uploads/2017/11/imagem-indisponivel-para-produtos-sem-imagem_15_5.jpg"}
                     alt="Imagem não encontrada"
                     />
-                    <div >
+                    <div className="flex flex-col justify-center items-center">
                         <h2>Classificação indicativa: {movie.adult? "18+" : "Livre"}</h2>
                         <h2>Data de Lançamento: {movie.release_date}</h2>
                         <h2>Popularidade: {movie.popularity}</h2>
@@ -72,9 +70,6 @@ export const ViewContent = ()=>{
                     Sinopse: {movie.overview}
                 </div>
                     <button className="py-2 bg-red-600 rounded-md mb-3">Assistir gratuitamente</button>
-                <div className="bg-orange-400 py-4">
-                    <p>desenvolvido por: Italo. Desenvolvedor Front-end </p>
-                </div>
             </div>
         )        
     }else{

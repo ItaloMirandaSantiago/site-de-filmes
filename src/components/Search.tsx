@@ -25,12 +25,12 @@ export const Search = ()=>{
                 }
             }, timer)
             setTimerSearch(newTimer)
-
+            // eslint-disable-next-line
     }, [InputValue?.ValueInput])
     
 
     return(
-        <div className=" mb-3 text-center">
+        <div className=" text-center mb-5">
             <input className=" h-12 w-2/4 pl-3 rounded shadow-none outline-none" onChange={(e)=>InputValue?.setValueInput(e.target.value)} value={InputValue?.ValueInput ? InputValue.ValueInput : ""} type="text" placeholder="Encontre seus filmes favoritos" />
         </div>
     )
