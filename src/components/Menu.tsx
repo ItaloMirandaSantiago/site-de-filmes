@@ -7,7 +7,7 @@ export const Menu = ()=>{
     const InputValue = useContext(InputValueContext)
     const nav = useRef<HTMLDivElement | null>(null)
     const [MoveMenu, setMoveMenu] = useState<boolean>(true)
-
+    
     function addColor(NavElement: HTMLElement){
         
         nav?.current?.querySelectorAll('.menu, .text-blue-600').forEach((element =>{
@@ -77,8 +77,9 @@ export const Menu = ()=>{
                 </div>
 
             <nav ref={nav} className="absolute top-11.7vh z-10 right-0 w-50vw h-50vh flex flex-col items-center justify-around 
-            transform translate-x-full transition-transform duration-300 ease-in bg-slate-900 
-            parte qu já estava -> sm:h-full sm:top-0 sm:flex-row sm:static sm:bg-gray-700 sm:translate-x-0 text-lg gap-3">
+            transform translate-x-full transition-transform duration-500 ease-in bg-slate-900
+             sm:h-full sm:top-0 sm:flex-row sm:static sm:bg-gray-700 sm:translate-x-0 sm:text-lg sm:gap-3">
+                <Link className="menu animationButtonMenu duration-500 rounded-md opacity-0 sm:opacity-100" onClick={(e)=>{addColor(e.currentTarget); InputValue?.setValueInput(null)}}  to={'/home'}>Início</Link>
                 <Link className="menu animationButtonMenu duration-500 rounded-md opacity-0 sm:opacity-100" onClick={(e)=>addColor(e.currentTarget)} to={'/favorites/'}>Favoritos</Link>
                 <a target="black_" rel="noopener noreferrer" className="menu animationButtonMenu duration-500 rounded-md opacity-0 sm:opacity-100" onClick={(e)=>addColor(e.currentTarget)} href="https://www.themoviedb.org/signup?language=pt-BR">Cadastrar</a>
                 <Link className="menu animationButtonMenu duration-500 rounded-md opacity-0 sm:opacity-100" onClick={(e)=>addColor(e.currentTarget)} to="/login">Login</Link>
