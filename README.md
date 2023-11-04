@@ -7,4 +7,5 @@
   <li>React Router</li>
   <li>Axios</li>
   <li>TailwindCSS</li>
+  <li>Query</li>
 </ul>
