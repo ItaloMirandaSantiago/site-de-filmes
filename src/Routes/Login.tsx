@@ -4,9 +4,9 @@ export const Login = ()=>{
     
 
     return(
-        <div className="flex justify-center items-center h-[88vh]">
-            <form className="w-3/4 h-3/4 rounded-sm bg-teal-700 text-center max-w-screen-sm">
-                <h2 className="font-bold text-2xl">Login</h2>
+        <div className="flex justify-center items-center h-[88vh] bg-white">
+            <form className="w-3/4 h-3/4 rounded-sm bg-black text-center max-w-screen-sm">
+                <h2 className="font-bold text-2xl mt-3">Login</h2>
                 <div className="flex justify-center justify-items-center items-center ">
                     <div className="mt-4 w-16 h-16 rounded-full overflow-hidden">
                         <img className=" w-full h-full object-cover" src="https://www.fatosdesconhecidos.com.br/wp-content/uploads/2020/01/images-600x377.png" 
