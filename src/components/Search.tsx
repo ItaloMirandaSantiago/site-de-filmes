@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react"
-import { Api } from "./logic/Api"
+import { Api } from "./request/ApiMovies"
 import { SearchContext } from "../Contexts/SearchContext"
 import { InputValueContext } from "../Contexts/InputValueSearch"
 

@@ -6,6 +6,7 @@ import { Login } from './Routes/Login';
 import { ResultsSearch } from './Routes/ResultsSearch';
 import { Providers } from "./utils/Providers";
 import { Menu } from "./components/Menu";
+import {CreateUser} from './Routes/CreateUser'
 import { Favorites } from "./Routes/Favorites";
 import { DesenvolvedorInfo } from "./components/DesenvolvedorInfo";
 
@@ -18,6 +19,7 @@ function App() {
       <Routes>
         <Route path= "/" element={<Home />}/>
           <Route path='/view/:slug/:saveordelete' element={<ViewContent />} />
+          <Route path="create" element={<CreateUser/>} />
           <Route path='/login/' element={<Login/>}/>
           <Route path='/search/' element={<ResultsSearch />} />
           <Route path='/favorites/' element={<Favorites />} />

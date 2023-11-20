@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { Compiler } from "./Compiler"
-import { Api } from "./logic/Api"
+import { Api } from "./request/ApiMovies"
 import { Apiresponse } from "../types/Tendencies"
 import { MostVoted, MoviePopular, Recent } from "../query/ResApi"
 

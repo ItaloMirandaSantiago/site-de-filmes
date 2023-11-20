@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { Api } from "../components/logic/Api";
+import { Api } from "../components/request/ApiMovies";
 
 export const MostVoted = ()=>{
     return useQuery({queryKey: ['MostVoted'], 

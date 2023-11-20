@@ -81,7 +81,7 @@ export const Menu = ()=>{
              sm:h-full sm:top-0 sm:flex-row sm:static sm:bg-gray-700 sm:translate-x-0 sm:text-lg sm:gap-3">
                 <Link className="menu animationButtonMenu duration-500 rounded-md opacity-0 sm:opacity-100" onClick={(e)=>{addColor(e.currentTarget); InputValue?.setValueInput(null)}}  to={'/home'}>Início</Link>
                 <Link className="menu animationButtonMenu duration-500 rounded-md opacity-0 sm:opacity-100" onClick={(e)=>addColor(e.currentTarget)} to={'/favorites/'}>Favoritos</Link>
-                <a target="black_" rel="noopener noreferrer" className="menu animationButtonMenu duration-500 rounded-md opacity-0 sm:opacity-100" onClick={(e)=>addColor(e.currentTarget)} href="https://www.themoviedb.org/signup?language=pt-BR">Cadastrar</a>
+                <Link className="menu animationButtonMenu duration-500 rounded-md opacity-0 sm:opacity-100" onClick={(e)=>addColor(e.currentTarget)} to={'create'}>Cadastrar</Link>
                 <Link className="menu animationButtonMenu duration-500 rounded-md opacity-0 sm:opacity-100" onClick={(e)=>addColor(e.currentTarget)} to="/login">Login</Link>
             </nav>
         </div>
