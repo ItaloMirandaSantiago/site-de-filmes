@@ -1,11 +1,15 @@
-import { useState } from "react"
+import { useContext, useState } from "react"
 import { UserApi } from "../components/request/UserApi"
+import { TokenContext } from "../Contexts/TokenUser"
+import { useNavigate } from "react-router-dom"
 
 export const CreateUser = ()=>{
     const [name, setName] = useState<string>('')
     const [password, setPassword] = useState<string>('')
     const [userLogged, setuserLogged] = useState<string | null>(null)
-    
+    const tokenContext = useContext(TokenContext)
+    const navigate = useNavigate()
+
     async function RequestCreate() {
         try{
             let res = await UserApi({Params: "/create", method : "post", data : {name, password}}).then(response=>{
@@ -15,11 +19,16 @@ export const CreateUser = ()=>{
             })
             if (res.sucess) {
                 setuserLogged(res.userName)
+                tokenContext?.settoken(res.token)
+                navigate("/") 
+            }else{
+                setName('')
+                setPassword('')
+                alert('Usuário já consta em nosso sistema')
 
             } 
         }catch(err){
             alert("algo deu errado")
-            console.log(err)
         }
     }
 

@@ -1,15 +1,19 @@
 import {useNavigate, useParams} from "react-router-dom"
 import { Movie } from "../types/Tendencies"
+import { UserApi } from "../components/request/UserApi"
+import { TokenContext } from "../Contexts/TokenUser"
+import { useContext } from "react"
 
 export const ViewContent = ()=>{
     
     const navigate = useNavigate()
     const {slug, saveordelete} = useParams<string>()
     const changText = `${saveordelete}`
+    const tokenContext = useContext(TokenContext)
     if (slug) {
         const movie: Movie = JSON.parse((decodeURIComponent(slug)))
         
-        const VerificationSave = ()=>{
+        const VerificationSave = async ()=>{
             const save: string | null = localStorage.getItem('save')
             if (save) {
                 let saveArray: Movie[] = JSON.parse(save)
@@ -20,6 +24,14 @@ export const ViewContent = ()=>{
                         if (saveordelete === 'true') {
                             saveArray.splice(i, 1)
                             localStorage.setItem('save', JSON.stringify(saveArray))
+                            console.log('rodando')
+                            if (tokenContext?.token) {
+
+                               const res = await UserApi({Params: "removeMovies",  method: "delete", token: tokenContext?.token, data : {idmovie: saveArray[i].id ? `${saveArray[i].id}`: ""}})   
+                               console.log(res)
+                            }else{
+                                alert('Você não está conectado a sua conta, então os filmes salvos ficarão salvos somente em seu aparelho')
+                            }
                             navigate(-1)
                         }else{
                             const button  = document.getElementsByClassName('button')[0]
@@ -32,6 +44,13 @@ export const ViewContent = ()=>{
                     }
                 }
                 if (itemSave) {
+                    if (tokenContext?.token) {
+
+                               const res = await UserApi({Params: "addMovies",  method: "post", token: tokenContext?.token, data : {idmovie: movie.id ? `${movie.id}`: ""}})   
+                               console.log(res)
+                            }else{
+                                alert('Você não está conectado a sua conta, então os filmes salvos ficarão salvos somente em seu aparelho')
+                            }
                     saveArray.push(movie)
                         localStorage.setItem('save', JSON.stringify(saveArray))
                         const button  = document.getElementsByClassName('button')[0]
@@ -42,7 +61,14 @@ export const ViewContent = ()=>{
                 }
                           
             }else{
-                localStorage.setItem('save', JSON.stringify([movie]))
+                if (tokenContext?.token) {
+                    const res = await UserApi({Params: "addMovies",  method: "post", token: tokenContext?.token, data : {idmovie: movie.id ? `${movie.id}`: ""}})   
+                    console.log(res)
+                    localStorage.setItem('save', JSON.stringify([movie])) 
+                }else{
+                    alert('Você não está conectado a sua conta, então os filmes salvos ficarão salvos somente em seu aparelho')
+                    localStorage.setItem('save', JSON.stringify([movie])) 
+                }
             }
         }
 

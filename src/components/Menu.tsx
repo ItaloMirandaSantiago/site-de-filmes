@@ -1,13 +1,44 @@
-import { useContext, useRef, useState } from "react"
+import { useContext, useEffect, useRef, useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { InputValueContext } from "../Contexts/InputValueSearch"
+import { ValidToken } from "./ValidToken"
+import { UserApi } from "./request/UserApi"
+import { TokenContext } from "../Contexts/TokenUser"
 
 export const Menu = ()=>{
     const navigate = useNavigate()
     const InputValue = useContext(InputValueContext)
     const nav = useRef<HTMLDivElement | null>(null)
     const [MoveMenu, setMoveMenu] = useState<boolean>(true)
-    
+    const [token, setToken] = useState(false)
+    const tokenContext = useContext(TokenContext)
+
+    useEffect(()=>{
+        const tokenRequest = async ()=>{
+
+            if (tokenContext?.token) {
+                console.log(tokenContext.token)
+                try{
+                    let res = await UserApi({Params: "ValidToken", method: "get", token: tokenContext.token}).then(response => {
+                        return response
+                    })
+                    if (res.sucess) {
+                        setToken(true)   
+                    }else{
+                        setToken(false)
+                        tokenContext.settoken(null)
+                    }
+                }catch(err){
+                    setToken(false)
+                     alert('Verifique sua internet e/ou volte mais tarde')
+                    }
+            }else(
+                setToken(false)
+            )
+        }
+        tokenRequest()
+    }, [tokenContext?.token])
+
     function addColor(NavElement: HTMLElement){
         
         nav?.current?.querySelectorAll('.menu, .text-blue-600').forEach((element =>{
@@ -18,7 +49,7 @@ export const Menu = ()=>{
           NavElement.className = 'text-blue-600'
     }
 
-    function active() {
+    async function active() {
         if (MoveMenu) {
             nav.current?.classList.add('translate-x-0') 
             nav.current?.classList.remove('translate-x-full') 
@@ -81,8 +112,15 @@ export const Menu = ()=>{
              sm:h-full sm:top-0 sm:flex-row sm:static sm:bg-gray-700 sm:translate-x-0 sm:text-lg sm:gap-3">
                 <Link className="menu animationButtonMenu duration-500 rounded-md opacity-0 sm:opacity-100" onClick={(e)=>{addColor(e.currentTarget); InputValue?.setValueInput(null)}}  to={'/home'}>Início</Link>
                 <Link className="menu animationButtonMenu duration-500 rounded-md opacity-0 sm:opacity-100" onClick={(e)=>addColor(e.currentTarget)} to={'/favorites/'}>Favoritos</Link>
-                <Link className="menu animationButtonMenu duration-500 rounded-md opacity-0 sm:opacity-100" onClick={(e)=>addColor(e.currentTarget)} to={'create'}>Cadastrar</Link>
-                <Link className="menu animationButtonMenu duration-500 rounded-md opacity-0 sm:opacity-100" onClick={(e)=>addColor(e.currentTarget)} to="/login">Login</Link>
+                {token ? 
+                    <Link className="menu animationButtonMenu duration-500 rounded-md opacity-0 sm:opacity-100" onClick={(e)=>addColor(e.currentTarget)} to={'/'}>Conta</Link>
+                    :
+                    <>
+                        <Link className="menu animationButtonMenu duration-500 rounded-md opacity-0 sm:opacity-100" onClick={(e)=>addColor(e.currentTarget)} to={'/create'}>Cadastrar</Link>
+                        <Link className="menu animationButtonMenu duration-500 rounded-md opacity-0 sm:opacity-100" onClick={(e)=>addColor(e.currentTarget)} to="/login">Login</Link>  
+                    </>
+
+                }              
             </nav>
         </div>
     )

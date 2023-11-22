@@ -3,6 +3,7 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools"
 import { ReactNode } from "react"
 import { SearchProvider } from "../Contexts/SearchContext"
 import { InputValueSearchProvider } from "../Contexts/InputValueSearch"
+import { TokenContextProvider } from "../Contexts/TokenUser"
 
 type Props = {
     children : ReactNode
@@ -16,7 +17,9 @@ export const Providers = ({children} : Props) => {
         <QueryClientProvider client={queryClient}>
             <SearchProvider>
                 <InputValueSearchProvider>
-                {children}
+                    <TokenContextProvider>
+                        {children}
+                    </TokenContextProvider>
                 </InputValueSearchProvider>
             </SearchProvider>
             <ReactQueryDevtools initialIsOpen={false}/>

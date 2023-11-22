@@ -1,20 +1,31 @@
-import { useState } from "react"
+import { useContext, useState } from "react"
 import { UserApi } from "../components/request/UserApi"
+import { TokenContext } from "../Contexts/TokenUser"
+import { useNavigate } from "react-router-dom"
 
 export const Login = ()=>{
     const [name, setName] = useState<string>('')
     const [password, setPassword] = useState<string>('')
+    const tokenContext = useContext(TokenContext)
+    const navigate = useNavigate()
     
-    function RequestCreate() {
+    async function RequestCreate() {
+        console.log(name, password)
         try{
-            let res = UserApi({Params: "/create", method : "post", data : {name, password}})
-            console.log(name, password)
-            
+            let res = await UserApi({Params: "/login", method : "post", data : {name, password}}).then(response =>{
+                return response
+            })
+            if (res.token) {
+                tokenContext?.settoken(res.token)  
+                navigate("/") 
+            }else{
+                setName("")
+                setPassword("")
+                alert("Usuário não encontrado")
+            }
         }catch(err){
             alert("algo deu errado")
-            console.log(err)
         }
-
     }
 
     return(
@@ -40,7 +51,7 @@ export const Login = ()=>{
                             <input type="checkbox" name="remember" id="remember" defaultChecked />
                             Lembre-se de mim
                         </label>
-                        <button className="opacity-50 text-sm no-underline hover:underline">esqueceu sua senha?</button>
+                        <button className="rounded-3xl py-2 bg-gray-400 w-2/4 text-center text-black" type="button" onClick={RequestCreate} >Conectar</button>
                     </div>
                   
                       <button type="button" onClick={RequestCreate} className="text-black">Conectar</button>
