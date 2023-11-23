@@ -1,7 +1,6 @@
 import { useContext, useEffect, useRef, useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { InputValueContext } from "../Contexts/InputValueSearch"
-import { ValidToken } from "./ValidToken"
 import { UserApi } from "./request/UserApi"
 import { TokenContext } from "../Contexts/TokenUser"
 
@@ -45,12 +44,13 @@ export const Menu = ()=>{
 
     function addColor(NavElement: HTMLElement){
         
-        nav?.current?.querySelectorAll('.menu, .bg-gray-700').forEach((element =>{
-            if (element.className === 'bg-gray-700') {
-              element.className = 'menu'
+        nav?.current?.querySelectorAll('.menu, .bg-blue-500').forEach((element =>{
+
+            if (element.className === 'menu animationButtonMenu duration-500 rounded-md opacity-0 sm:opacity-100 bg-blue-500') {
+              element.classList.remove('bg-blue-500')
             }
           }))
-          NavElement.className = 'bg-gray-700'
+          NavElement.classList.add('bg-blue-500')
     }
 
     async function active() {
