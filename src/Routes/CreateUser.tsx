@@ -63,7 +63,7 @@ export const CreateUser = ()=>{
                         type="password" placeholder="Senha!" value={password} onChange={(e)=>{setPassword(e.target.value)}}/>
 
                         <input id="passwordcheck" className="placeholder:text-white pl-2 outline-none text-white border-2 border-solid border-rgba-255-255-255-20 bg-transparent rounded-3xl my-1 py-2 w-3/4"
-                        type="password" placeholder="Repetir Senha!" value={password} onChange={(e)=>{setPasswordCheck(e.target.value)}}/>
+                        type="password" placeholder="Repetir Senha!" value={passwordCheck} onChange={(e)=>{setPasswordCheck(e.target.value)}}/>
 
                         <div className="flex justify-around w-full">
                             <label className="opacity-50 text-sm" htmlFor="remember">
