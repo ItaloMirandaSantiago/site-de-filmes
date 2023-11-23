@@ -12,7 +12,7 @@ module.exports = {
         "colorFund": "#272323"
       },
       spacing : {
-        '11.7vh' : '11.7vh',
+        '12vh' : '12vh',
         '50vh' : '50vh',
         '50vw' : '50vw'
       },

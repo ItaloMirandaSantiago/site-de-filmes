@@ -22,16 +22,19 @@ export const ViewContent = ()=>{
                     if (saveArray[i].id === movie.id){
                         itemSave = false
                         if (saveordelete === 'true') {
+                            if (tokenContext?.token) {
+
+                                const res = await UserApi({Params: "removeMovies",  method: "delete", token: tokenContext?.token, data : {idmovie: saveArray[i].id ? `${saveArray[i].id}`: ""}})   
+                                console.log(res)
+                            }else{
+                                 alert('Você não está conectado a sua conta, então os filmes salvos ficarão salvos somente em seu aparelho')
+                            }
+                            if (saveArray[i].id) {
+                                
+                            }
                             saveArray.splice(i, 1)
                             localStorage.setItem('save', JSON.stringify(saveArray))
                             console.log('rodando')
-                            if (tokenContext?.token) {
-
-                               const res = await UserApi({Params: "removeMovies",  method: "delete", token: tokenContext?.token, data : {idmovie: saveArray[i].id ? `${saveArray[i].id}`: ""}})   
-                               console.log(res)
-                            }else{
-                                alert('Você não está conectado a sua conta, então os filmes salvos ficarão salvos somente em seu aparelho')
-                            }
                             navigate(-1)
                         }else{
                             const button  = document.getElementsByClassName('button')[0]

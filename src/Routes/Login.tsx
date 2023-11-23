@@ -2,29 +2,49 @@ import { useContext, useState } from "react"
 import { UserApi } from "../components/request/UserApi"
 import { TokenContext } from "../Contexts/TokenUser"
 import { useNavigate } from "react-router-dom"
+import { Loading } from "../components/Loading"
 
 export const Login = ()=>{
     const [name, setName] = useState<string>('')
     const [password, setPassword] = useState<string>('')
     const tokenContext = useContext(TokenContext)
+    const [checkbox, setCheckbox] = useState<boolean>(true)
     const navigate = useNavigate()
     
     async function RequestCreate() {
-        console.log(name, password)
+        
+        const button = document.getElementById("button")
+        if (button) {
+            button.innerHTML = "Carregando..."
+        }
         try{
             let res = await UserApi({Params: "/login", method : "post", data : {name, password}}).then(response =>{
                 return response
             })
             if (res.token) {
                 tokenContext?.settoken(res.token)  
+                if (checkbox) {
+                    localStorage.setItem('token', res.token)   
+                }
+                if (button) {
+                    button.innerHTML = "Login"
+                }
                 navigate("/") 
             }else{
                 setName("")
                 setPassword("")
+                const button = document.getElementById("button")
+                if (button) {
+                    button.innerHTML = "Login"
+                }
                 alert("Usuário não encontrado")
             }
         }catch(err){
-            alert("algo deu errado")
+            const button = document.getElementById("button")
+            if (button) {
+                button.innerHTML = "Login"
+            }
+            alert("servidor fora do ar")
         }
     }
 
@@ -48,13 +68,13 @@ export const Login = ()=>{
                      type="password" placeholder="Senha!" value={password} onChange={(e)=>{setPassword(e.target.value)}}/>
                     <div className="flex justify-around w-full">
                         <label className="opacity-50 text-sm" htmlFor="remember">
-                            <input type="checkbox" name="remember" id="remember" defaultChecked />
+                            <input onClick={()=>{setCheckbox(!checkbox)}}  type="checkbox" name="remember" id="remember" defaultChecked />
                             Lembre-se de mim
                         </label>
                         <button className="rounded-3xl py-2 bg-gray-400 w-2/4 text-center text-black" type="button" onClick={RequestCreate} >Conectar</button>
                     </div>
                   
-                      <button type="button" onClick={RequestCreate} className="text-black">Conectar</button>
+                      <button id="button" type="button" onClick={RequestCreate} className="text-black">Conectar</button>
                   
                 </div>
             </form>

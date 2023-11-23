@@ -15,7 +15,11 @@ export const Menu = ()=>{
 
     useEffect(()=>{
         const tokenRequest = async ()=>{
-
+            let saveToken = localStorage.getItem('token')
+            if (saveToken) {
+                console.log(saveToken)
+                tokenContext?.settoken(saveToken)
+            }
             if (tokenContext?.token) {
                 console.log(tokenContext.token)
                 try{
@@ -41,19 +45,19 @@ export const Menu = ()=>{
 
     function addColor(NavElement: HTMLElement){
         
-        nav?.current?.querySelectorAll('.menu, .text-blue-600').forEach((element =>{
-            if (element.className === 'text-blue-600') {
+        nav?.current?.querySelectorAll('.menu, .bg-gray-700').forEach((element =>{
+            if (element.className === 'bg-gray-700') {
               element.className = 'menu'
             }
           }))
-          NavElement.className = 'text-blue-600'
+          NavElement.className = 'bg-gray-700'
     }
 
     async function active() {
         if (MoveMenu) {
             nav.current?.classList.add('translate-x-0') 
             nav.current?.classList.remove('translate-x-full') 
-            nav.current?.querySelectorAll('.menu, .text-blue-600').forEach(element  => {
+            nav.current?.querySelectorAll('.menu, .bg-gray-700').forEach(element  => {
                 element.classList.add('animation')
             })
 
@@ -72,7 +76,7 @@ export const Menu = ()=>{
         }else{
             nav.current?.classList.add('translate-x-full') 
             nav.current?.classList.remove('translate-x-0')
-            nav.current?.querySelectorAll('.menu, .text-blue-600').forEach(element => {
+            nav.current?.querySelectorAll('.menu, .bg-gray-700').forEach(element => {
                 element.classList.remove('animation')
             }) 
 
@@ -107,7 +111,7 @@ export const Menu = ()=>{
                     <div className="divMenu w-8 h-1 m-2 bg-white transition duration-300"></div>
                 </div>
 
-            <nav ref={nav} className="absolute top-11.7vh z-10 right-0 w-50vw h-50vh flex flex-col items-center justify-around 
+            <nav ref={nav} className="absolute top-12vh z-10 right-0 w-50vw h-50vh flex flex-col items-center justify-around 
             transform translate-x-full transition-transform duration-500 ease-in bg-slate-900
              sm:h-full sm:top-0 sm:flex-row sm:static sm:bg-gray-700 sm:translate-x-0 sm:text-lg sm:gap-3">
                 <Link className="menu animationButtonMenu duration-500 rounded-md opacity-0 sm:opacity-100" onClick={(e)=>{addColor(e.currentTarget); InputValue?.setValueInput(null)}}  to={'/home'}>Início</Link>
