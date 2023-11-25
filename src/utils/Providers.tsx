@@ -4,6 +4,7 @@ import { ReactNode } from "react"
 import { SearchProvider } from "../Contexts/SearchContext"
 import { InputValueSearchProvider } from "../Contexts/InputValueSearch"
 import { TokenContextProvider } from "../Contexts/TokenUser"
+import { AlertContextProvider } from "../Contexts/AlertContext"
 
 type Props = {
     children : ReactNode
@@ -18,7 +19,9 @@ export const Providers = ({children} : Props) => {
             <SearchProvider>
                 <InputValueSearchProvider>
                     <TokenContextProvider>
-                        {children}
+                        <AlertContextProvider>
+                            {children}
+                        </AlertContextProvider>
                     </TokenContextProvider>
                 </InputValueSearchProvider>
             </SearchProvider>

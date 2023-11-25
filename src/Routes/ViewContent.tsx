@@ -3,6 +3,7 @@ import { Movie } from "../types/Tendencies"
 import { UserApi } from "../components/request/UserApi"
 import { TokenContext } from "../Contexts/TokenUser"
 import { useContext } from "react"
+import { AlertContext } from "../Contexts/AlertContext"
 
 export const ViewContent = ()=>{
     
@@ -10,6 +11,7 @@ export const ViewContent = ()=>{
     const {slug, saveordelete} = useParams<string>()
     const changText = `${saveordelete}`
     const tokenContext = useContext(TokenContext)
+    const alertContext = useContext(AlertContext)
     if (slug) {
         const movie: Movie = JSON.parse((decodeURIComponent(slug)))
         
@@ -27,14 +29,13 @@ export const ViewContent = ()=>{
                                 const res = await UserApi({Params: "removeMovies",  method: "delete", token: tokenContext?.token, data : {idmovie: saveArray[i].id ? `${saveArray[i].id}`: ""}})   
                                 console.log(res)
                             }else{
-                                 alert('Você não está conectado a sua conta, então os filmes salvos ficarão salvos somente em seu aparelho')
+                                 alertContext?.setAlert('Você não está conectado a sua conta, então os filmes salvos ficarão salvos somente em seu aparelho')
                             }
                             if (saveArray[i].id) {
                                 
                             }
                             saveArray.splice(i, 1)
                             localStorage.setItem('save', JSON.stringify(saveArray))
-                            console.log('rodando')
                             navigate(-1)
                         }else{
                             const button  = document.getElementsByClassName('button')[0]
@@ -52,7 +53,7 @@ export const ViewContent = ()=>{
                                const res = await UserApi({Params: "addMovies",  method: "post", token: tokenContext?.token, data : {idmovie: movie.id ? `${movie.id}`: ""}})   
                                console.log(res)
                             }else{
-                                alert('Você não está conectado a sua conta, então os filmes salvos ficarão salvos somente em seu aparelho')
+                                alertContext?.setAlert('Você não está conectado a sua conta, então os filmes salvos ficarão salvos somente em seu aparelho')
                             }
                     saveArray.push(movie)
                         localStorage.setItem('save', JSON.stringify(saveArray))
@@ -69,7 +70,7 @@ export const ViewContent = ()=>{
                     console.log(res)
                     localStorage.setItem('save', JSON.stringify([movie])) 
                 }else{
-                    alert('Você não está conectado a sua conta, então os filmes salvos ficarão salvos somente em seu aparelho')
+                    alertContext?.setAlert('Você não está conectado a sua conta, então os filmes salvos ficarão salvos somente em seu aparelho')
                     localStorage.setItem('save', JSON.stringify([movie])) 
                 }
             }

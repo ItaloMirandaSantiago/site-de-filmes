@@ -20,6 +20,10 @@
   box-shadow: 0 0 35px black;
 }
 
+.displaynone{
+  display: none;
+}
+
 .animation{
   animation: Fade 0.9s ease 0.3s forwards;
 }
@@ -33,6 +37,10 @@
 
 .op3 {
   transform: rotate(45deg) translate(-5px, -7px);
+}
+
+.leftcustom {
+  left: 37%;
 }
 
 .imgWH{

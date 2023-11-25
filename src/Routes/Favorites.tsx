@@ -5,6 +5,7 @@ import { Api } from "../components/request/ApiMovies"
 import { TokenContext } from "../Contexts/TokenUser"
 import { UserApi } from "../components/request/UserApi"
 import { Loading } from "../components/Loading"
+import { AlertContext } from "../Contexts/AlertContext"
 
 export const Favorites = ()=>{
     const [items, setItems] = useState<Movie[] | null> (null)
@@ -12,6 +13,8 @@ export const Favorites = ()=>{
     const tokenContext = useContext(TokenContext)
     const [IdMoviesUser, setIdMoviesUser] = useState<number[] | null>(null)
     const [MoviesUser, setMoviesUser] = useState<Movie[]>([])
+    const alertContext = useContext(AlertContext)
+    
     let OneUseEffect = true
 
     useEffect(()=>{
@@ -27,8 +30,6 @@ export const Favorites = ()=>{
 
     useEffect(()=>{
         const RequestMoviesSaveDB = async ()=>{
-            console.log("token", tokenContext?.token)
-            console.log("one", OneUseEffect)
             if (tokenContext?.token) {
                 if (OneUseEffect) {
                        
@@ -49,11 +50,11 @@ export const Favorites = ()=>{
                         console.log('foi')
                         setMoviesUser(movies)
                     }catch(err){
-                        alert('Verifique sua internet e/ou volte mais tarde')
+                        alertContext?.setAlert('Verifique sua internet e/ou volte mais tarde')
                     }
                 }
             }else{
-                alert("conecte em sua conta ou crie uma")
+                alertContext?.setAlert("conecte em sua conta ou crie uma")
             }
 
         }

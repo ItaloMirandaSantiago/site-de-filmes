@@ -2,6 +2,7 @@ import { useContext, useState } from "react"
 import { UserApi } from "../components/request/UserApi"
 import { TokenContext } from "../Contexts/TokenUser"
 import { useNavigate } from "react-router-dom"
+import { AlertContext } from "../Contexts/AlertContext"
 
 export const CreateUser = ()=>{
     const [name, setName] = useState<string>('')
@@ -13,6 +14,8 @@ export const CreateUser = ()=>{
     const navigate = useNavigate()
 
     async function RequestCreate() {
+        const alertContext = useContext(AlertContext)
+        
         if (passwordCheck === password) {
             try{
                 let res = await UserApi({Params: "/create", method : "post", data : {name, password}}).then(response=>{
@@ -30,14 +33,14 @@ export const CreateUser = ()=>{
                 }else{
                     setName('')
                     setPassword('')
-                    alert('Usuário já consta em nosso sistema')
+                    alertContext?.setAlert('Usuário já consta em nosso sistema')
     
                 } 
             }catch(err){
-                alert("algo deu errado")
+                alertContext?.setAlert("algo deu errado")
             }
         }else{
-            alert("As senhas não são iguais")
+            alertContext?.setAlert("As senhas não são iguais")
         }
     }
 

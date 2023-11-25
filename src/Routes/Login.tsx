@@ -2,7 +2,7 @@ import { useContext, useState } from "react"
 import { UserApi } from "../components/request/UserApi"
 import { TokenContext } from "../Contexts/TokenUser"
 import { useNavigate } from "react-router-dom"
-import { Loading } from "../components/Loading"
+import { AlertContext } from "../Contexts/AlertContext"
 
 export const Login = ()=>{
     const [name, setName] = useState<string>('')
@@ -10,6 +10,7 @@ export const Login = ()=>{
     const tokenContext = useContext(TokenContext)
     const [checkbox, setCheckbox] = useState<boolean>(true)
     const navigate = useNavigate()
+    const alertContext = useContext(AlertContext)
     
     async function RequestCreate() {
         
@@ -37,14 +38,14 @@ export const Login = ()=>{
                 if (button) {
                     button.innerHTML = "Login"
                 }
-                alert("Usuário não encontrado")
+                alertContext?.setAlert("Usuário não encontrado")
             }
         }catch(err){
             const button = document.getElementById("button")
             if (button) {
                 button.innerHTML = "Login"
             }
-            alert("servidor fora do ar")
+            alertContext?.setAlert("servidor fora do ar")
         }
     }
 

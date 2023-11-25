@@ -1,7 +1,7 @@
 {
   "name": "sitedemusica",
   "version": "0.1.0",
-  "homepage": "https://italomirandasantiago.github.io/site-de-filmes/",
+  "homepage": "https://sitedefilmesficticioo.000webhostapp.com/",
   "private": true,
   "dependencies": {
     "@tanstack/react-query": "^4.36.1",

@@ -18,7 +18,11 @@ module.exports = {
       },
       boxShadow : {
         'customMenu' : '0px 7px 11px rgba(0,0,0, .7)'
+      },
+      left : {
+        'custom37%' : '37%'
       }
+      
     },
   },
   plugins: [

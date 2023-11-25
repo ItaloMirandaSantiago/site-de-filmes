@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom"
 import { InputValueContext } from "../Contexts/InputValueSearch"
 import { UserApi } from "./request/UserApi"
 import { TokenContext } from "../Contexts/TokenUser"
+import { AlertContext } from "../Contexts/AlertContext"
 
 export const Menu = ()=>{
     const navigate = useNavigate()
@@ -11,6 +12,7 @@ export const Menu = ()=>{
     const [MoveMenu, setMoveMenu] = useState<boolean>(true)
     const [token, setToken] = useState(false)
     const tokenContext = useContext(TokenContext)
+    const alertContext = useContext(AlertContext)
 
     useEffect(()=>{
         const tokenRequest = async ()=>{
@@ -33,14 +35,14 @@ export const Menu = ()=>{
                     }
                 }catch(err){
                     setToken(false)
-                     alert('Verifique sua internet e/ou volte mais tarde')
+                     alertContext?.setAlert('Verifique sua internet e/ou volte mais tarde')
                     }
             }else(
                 setToken(false)
             )
         }
         tokenRequest()
-    }, [tokenContext?.token])
+    }, [tokenContext])
 
     function addColor(NavElement: HTMLElement){
         

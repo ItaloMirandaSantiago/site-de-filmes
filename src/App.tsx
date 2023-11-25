@@ -9,6 +9,7 @@ import { Menu } from "./components/Menu";
 import {CreateUser} from './Routes/CreateUser'
 import { Favorites } from "./Routes/Favorites";
 import { DesenvolvedorInfo } from "./components/DesenvolvedorInfo";
+import { Warnings } from "./components/Warnings";
 
 function App() {
 
@@ -16,6 +17,7 @@ function App() {
     <div className="bg-colorFund overflow-hidden"> 
     <Providers>
       <Menu />
+      <Warnings />
       <Routes>
         <Route path= "/" element={<Home />}/>
           <Route path='/view/:slug/:saveordelete' element={<ViewContent />} />
