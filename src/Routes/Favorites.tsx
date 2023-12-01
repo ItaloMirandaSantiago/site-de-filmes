@@ -77,9 +77,8 @@ export const Favorites = ()=>{
                     :
                     <Loading />
                 :
-                <div className="bg-red-500 py-3 my-3">
-                    <h2>Nenhum filme salvo no momento</h2>
-                </div>
+                <>
+                </>
             }
         </div>
     )

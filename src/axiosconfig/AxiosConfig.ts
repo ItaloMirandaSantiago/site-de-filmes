@@ -9,7 +9,7 @@ export const confingaxios = axios.create({
   })
 
   export const ConfigApiUSER = axios.create({
-    baseURL: "http://localhost:4000",
+    baseURL: "https://localhost/4000",
     headers : {
       accept: 'application/x-www-form-urlencoded',
     }

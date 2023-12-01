@@ -11,10 +11,10 @@ export const CreateUser = ()=>{
     const [password, setPassword] = useState<string>('')
     const [userLogged, setuserLogged] = useState<string | null>(null)
     const tokenContext = useContext(TokenContext)
+    const alertContext = useContext(AlertContext)
     const navigate = useNavigate()
 
     async function RequestCreate() {
-        const alertContext = useContext(AlertContext)
         
         if (passwordCheck === password) {
             try{

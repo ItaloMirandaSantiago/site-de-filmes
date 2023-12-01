@@ -63,7 +63,7 @@ export const Login = ()=>{
                 <div className="flex flex-col gap-5 mt-2 items-center">
                     <label htmlFor="email" ></label>
                     <input id="email" className=" placeholder:text-white pl-2 outline-none text-white border-2 border-solid border-rgba-255-255-255-20 bg-transparent rounded-3xl my-1 py-2 w-3/4"
-                     type="email" placeholder="e-mail!" value={name} onChange={(e)=>{setName(e.target.value)}}/>
+                     type="name" placeholder="nome!" value={name} onChange={(e)=>{setName(e.target.value)}}/>
                     <label htmlFor="password"></label>
                     <input id="password" className="placeholder:text-white pl-2 outline-none text-white border-2 border-solid border-rgba-255-255-255-20 bg-transparent rounded-3xl my-1 py-2 w-3/4"
                      type="password" placeholder="Senha!" value={password} onChange={(e)=>{setPassword(e.target.value)}}/>

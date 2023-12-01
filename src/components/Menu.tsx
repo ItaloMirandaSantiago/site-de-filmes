@@ -42,7 +42,7 @@ export const Menu = ()=>{
             )
         }
         tokenRequest()
-    }, [tokenContext])
+    }, [])
 
     function addColor(NavElement: HTMLElement){
         
