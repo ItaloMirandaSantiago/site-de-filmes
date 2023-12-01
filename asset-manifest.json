@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/static/css/main.7398434f.css",
-    "main.js": "/static/js/main.692818b2.js",
-    "static/js/787.0ab1e71e.chunk.js": "/static/js/787.0ab1e71e.chunk.js",
-    "static/media/github.png": "/static/media/github.22cfdd1cba253783ce51.png",
-    "index.html": "/index.html",
-    "main.7398434f.css.map": "/static/css/main.7398434f.css.map",
-    "main.692818b2.js.map": "/static/js/main.692818b2.js.map",
-    "787.0ab1e71e.chunk.js.map": "/static/js/787.0ab1e71e.chunk.js.map"
+    "main.css": "/site-de-filmes/static/css/main.7398434f.css",
+    "main.js": "/site-de-filmes/static/js/main.dd083358.js",
+    "static/js/787.0ab1e71e.chunk.js": "/site-de-filmes/static/js/787.0ab1e71e.chunk.js",
+    "static/media/github.png": "/site-de-filmes/static/media/github.22cfdd1cba253783ce51.png",
+    "index.html": "/site-de-filmes/index.html",
+    "main.7398434f.css.map": "/site-de-filmes/static/css/main.7398434f.css.map",
+    "main.dd083358.js.map": "/site-de-filmes/static/js/main.dd083358.js.map",
+    "787.0ab1e71e.chunk.js.map": "/site-de-filmes/static/js/787.0ab1e71e.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.7398434f.css",
-    "static/js/main.692818b2.js"
+    "static/js/main.dd083358.js"
   ]
 }
